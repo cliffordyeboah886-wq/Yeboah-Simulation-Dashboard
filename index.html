@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeboah Impact Simulator</title>
+    
+    <!-- Robust CDNs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.12.7/Recharts.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #2563eb;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="bg-slate-100">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+        const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } = window.Recharts;
+
+        const App = () => {
+            const [m, setM] = useState(0.5);
+            const [v, setV] = useState(15);
+            const [r, setR] = useState(800);
+
+            // Yeboah's Law: η = (mv²) / Σ
+            const eta = useMemo(() => {
+                return ((m * Math.pow(v, 2)) / r).toFixed(2);
+            }, [m, v, r]);
+
+            const chartData = useMemo(() => {
+                let data = [];
+                for (let i = 0; i <= 40; i += 2) {
+                    data.push({
+                        velocity: i,
+                        efficiency: parseFloat(((m * Math.pow(i, 2)) / r).toFixed(2))
+                    });
+                }
+                return data;
+            }, [m, r]);
+
+            useEffect(() => {
+                lucide.createIcons();
+            }, []);
+
+            return (
+                <div className="min-h-screen p-4 md:p-10">
+                    <div className="max-w-5xl mx-auto">
+                        {/* Header */}
+                        <header className="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-slate-300 pb-6">
+                            <div className="flex items-center gap-4">
+                                <div className="bg-blue-700 p-3 rounded-xl text-white shadow-lg">
+                                    <i data-lucide="activity" className="w-8 h-8"></i>
+                                </div>
+                                <div>
+                                    <h1 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">The Yeboah Institute</h1>
+                                    <p className="text-slate-500 font-bold text-sm tracking-widest">IMPACT MECHANICS SIMULATOR v1.0</p>
+                                </div>
+                            </div>
+                            <div className="mt-4 md:mt-0 text-right">
+                                <span className="bg-white px-4 py-1 rounded-full border border-slate-300 text-xs font-bold text-slate-600 shadow-sm">
+                                    CC-BY 4.0 © 2024 Clifford Yeboah
+                                </span>
+                            </div>
+                        </header>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                            {/* Controls */}
+                            <div className="lg:col-span-4 space-y-6">
+                                <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-200">
+                                    <h2 className="text-slate-400 font-black text-xs uppercase tracking-widest mb-6 flex items-center gap-2">
+                                        <i data-lucide="settings-2" className="w-4 h-4"></i> Input Parameters
+                                    </h2>
+                                    
+                                    <div className="space-y-8">
+                                        <div>
+                                            <div className="flex justify-between mb-2">
+                                                <label className="text-sm font-bold text-slate-700">Tool Mass (m)</label>
+                                                <span className="text-blue-600 font-black">{m} kg</span>
+                                            </div>
+                                            <input type="range" min="0.1" max="5" step="0.1" value={m} onChange={(e)=>setM(e.target.value)} className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600" />
+                                        </div>
+
+                                        <div>
+                                            <div className="flex justify-between mb-2">
+                                                <label className="text-sm font-bold text-slate-700">Impact Velocity (v)</label>
+                                                <span className="text-blue-600 font-black">{v} m/s</span>
+                                            </div>
+                                            <input type="range" min="1" max="50" step="1" value={v} onChange={(e)=>setV(e.target.value)} className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600" />
+                                        </div>
+
+                                        <div>
+                                            <div className="flex justify-between mb-2">
+                                                <label className="text-sm font-bold text-slate-700">Resistance (Σ)</label>
+                                                <span className="text-blue-600 font-black">{r}</span>
+                                            </div>
+                                            <input type="range" min="100" max="3000" step="50" value={r} onChange={(e)=>setR(e.target.value)} className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600" />
+                                        </div>
+                                    </div>
+
+                                    <div className={`mt-10 p-6 rounded-2xl border-4 text-center transition-all ${eta >= 1 ? 'bg-green-50 border-green-500' : 'bg-red-50 border-red-500'}`}>
+                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Efficiency Index (η)</p>
+                                        <div className={`text-6xl font-black my-2 ${eta >= 1 ? 'text-green-600' : 'text-red-600'}`}>{eta}</div>
+                                        <div className={`text-xs font-bold uppercase tracking-widest ${eta >= 1 ? 'text-green-700' : 'text-red-700'}`}>
+                                            {eta >= 1 ? 'Result: Material Cleavage' : 'Result: Tool Rebound'}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Visualization */}
+                            <div className="lg:col-span-8 space-y-6">
+                                <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-200 h-[450px]">
+                                    <div className="flex justify-between items-center mb-8">
+                                        <h3 className="font-black text-slate-800 uppercase tracking-tight flex items-center gap-2">
+                                            <i data-lucide="line-chart" className="text-blue-600"></i> Performance Curve
+                                        </h3>
+                                        <code className="bg-slate-100 px-3 py-1 rounded text-blue-700 font-bold text-xs">η = (m·v²) / Σ</code>
+                                    </div>
+                                    
+                                    <div className="h-72 w-full">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <LineChart data={chartData}>
+                                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                                                <XAxis dataKey="velocity" stroke="#94a3b8" fontSize={12} tickMargin={10} />
+                                                <YAxis stroke="#94a3b8" fontSize={12} />
+                                                <Tooltip 
+                                                    contentStyle={{borderRadius: '15px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)'}}
+                                                />
+                                                <ReferenceLine y={1} stroke="#ef4444" strokeDasharray="5 5" label={{value: 'Cleavage Threshold', position: 'right', fill: '#ef4444', fontSize: 10, fontWeight: 'bold'}} />
+                                                <Line type="monotone" dataKey="efficiency" stroke="#1d4ed8" strokeWidth={4} dot={false} animationDuration={500} />
+                                            </LineChart>
+                                        </ResponsiveContainer>
+                                    </div>
+                                </div>
+
+                                <div className="bg-slate-900 rounded-3xl p-8 text-white flex flex-col md:flex-row gap-6 items-center">
+                                    <div className="bg-blue-600/20 p-4 rounded-2xl">
+                                        <i data-lucide="info" className="text-blue-400 w-8 h-8"></i>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-lg mb-1">Theoretical Basis</h4>
+                                        <p className="text-slate-400 text-sm leading-relaxed">
+                                            This simulator applies <strong>Yeboah's Law of Impact Efficiency</strong>. It calculates the kinetic energy transfer relative to material surface resistance to predict structural failure points in mechanical systems.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
