@@ -1,36 +1,31 @@
-# Yeboah Impact Simulation Dashboard
+# Yeboah’s Law: A Geometric Framework for Mechanical Separation
 
-## Overview
-The **Yeboah Impact Simulation Dashboard** is an interactive computational framework designed to simulate and analyze mechanical impact efficiency. This tool serves as a "Digital Twin" for validating **Yeboah’s Law of Cutting**, providing a visual and mathematical representation of energy dissipation and material behavior during mechanical separation.
+[![ORCID](https://img.shields.io/badge/ORCID-0009-0000-9001-2643-green?logo=orcid&logoColor=white)](https://orcid.org/0009-0000-9001-2643 )
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Key Features
-- **Real-Time Impact Analysis:** Calculate energy efficiency and force distribution dynamically.
-- **Interactive Parameters:** Adjust variables to see how material properties affect impact outcomes.
-- **Data Visualization:** Integrated charts and graphs for immediate scientific interpretation.
-- **Open Access:** Designed for researchers, engineers, and students in Applied Physics and Material Science.
+## 📌 Overview
+This repository contains the computational framework and simulation tools for **Yeboah’s Law**. This law provides a new geometric perspective on mechanical separation and impact mechanics, specifically focusing on the efficiency of cutting forces and energy distribution.
 
-## Scientific Context: Yeboah's Law
-This simulator is built upon the mathematical foundations of Yeboah's Law, which describes the relationship between geometric constraints and energy loss in cutting processes. 
+## 🚀 Key Features
+- **Mathematical Modeling:** Implementation of the Yeboah Law equations.
+- **Impact Simulation:** Tools to visualize force distribution during mechanical separation.
+- **Open Science:** Fully documented code for academic and industrial verification.
 
-## How to Use
-1. Access the live dashboard here: [https://cliffordyeboah886-wq.github.io/Yeboah-Simulation-Dashboard/](https://cliffordyeboah886-wq.github.io/Yeboah-Simulation-Dashboard/)
-2. Input your mechanical parameters (Force, Velocity, Material Resistance).
-3. Observe the calculated efficiency and impact curves.
+## 📖 Citation
+If you use this framework or the theoretical principles of Yeboah's Law in your research, please cite it as follows:
 
-## Citation
-If you use this simulator in your research, please cite it as follows:
-> **Yeboah, C. (2024).** *Yeboah Impact Simulation Dashboard: An interactive computational framework for mechanical impact efficiency* [Software]. Available from https://cliffordyeboah886-wq.github.io/Yeboah-Simulation-Dashboard/
+> Yeboah, C. (2024). *Yeboah’s Law: A Geometric Framework for Mechanical Separation and Impact Mechanics*. Software available at: [Your GitHub Link Here]
 
-## Author
-**Clifford Yeboah**  
-*Researcher & Educator*  
-ORCID: [(https://orcid.org/0009-0000-9001-2643)]  
-Specializing in Technology Education and Applied Physics.
+## 🛠️ Installation & Usage
+1. Clone the repository: `git clone (https://cliffordyeboah886-wq.github.io/Yeboah-Simulation-Dashboard/)
+2. Run the dashboard: [Insert command here, e.g., `python main.py`]
 
 ---
 
 ### 🛡️ Intellectual Property Note
-While this software is licensed under the MIT License, the theoretical framework and mathematical derivation of **Yeboah’s Law of Cutting** remain the intellectual property of **Clifford Yeboah**. 
+While this software is licensed under the **MIT License**, the theoretical framework and mathematical derivation of **Yeboah’s Law of Cutting** remain the intellectual property of **Clifford Yeboah**. 
 
-Any use of this law in commercial applications, industrial tools, or academic publications must be properly cited as follows:
-> *Yeboah, C. (2024). Yeboah’s Law: A Geometric Framework for Mechanical Separation and Impact Mechanics.*
+Any use of this law in commercial applications, industrial tools, or academic publications must be properly cited as per the instructions above.
+
+---
+**Author:** [Clifford Yeboah](https://orcid.org/0009-0000-9001-2643)
