@@ -1,6 +1,6 @@
 # Yeboah’s Law: A Geometric Framework for Mechanical Separation
 
-[![ORCID](https://img.shields.io/badge/ORCID-0000--0002--1153--2555-green)](https://orcid.org/0000-0002-1153-2555)
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0002--1153--2555-green)](https://orcid.org/0009-0000-9001-2643)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 📌 Overview
