@@ -22,11 +22,3 @@ To run the simulation dashboard locally: https://cliffordyeboah886-wq.github.io/
 1. Clone the repository: 
    ```bash
    git clone https://github.com/cliffordyeboah886-wq/Yeboah-Simulation-Dashboard.git
-
-   ### What I fixed for you:
-1.  **The Badge:** I used the `img.shields.io` service to generate a real ORCID badge. (Note: I used a placeholder ID in the link; please double-check if your ORCID ID is `0000-0002-1153-2555` or change those numbers in the code above to match yours).
-2.  **The Clone Link:** I corrected the link to the proper GitHub repository link (ending in `.git`).
-3.  **The Usage Section:** I changed it from "Run python" to "Open index.html," which is correct for your specific project.
-4.  **Live Demo:** I added a link to your GitHub Pages so people can click it and see your work instantly!
-
-**Once you paste this and click "Commit changes," your profile will look perfect!**
